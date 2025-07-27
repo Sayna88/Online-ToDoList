@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List Sign up 2/11</title>
+    <link rel="stylesheet" href="mbpSignup.css">
+</head>
+<body id="bgWork">
+    <div class="singupPage">
+        <h1 class="title">Sign Up</h1>
+        <form class="signupForm" action="mbpLogin.html" method="post">
+            <input class="inputField" type="email" id="email" placeholder="Email ..." required>
+            <div class="password-container">
+                <input class="inputField" type="password" id="password" placeholder="Password ..." required>
+                <span class="toggle-password" id="toggle-password">👁️</span>
+            </div>
+            <button class="signupButton" type="submit">Create Account</button>
+        </form>
+        <p>Do you have an accont ? <a href="mbpLogin.html">Login</a></p>
+    </div>
+
+    <script>
+        document.getElementById("email").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("password").focus();
+            }
+        });
+
+        document.getElementById("toggle-password").addEventListener("click", function() {
+            const passwordField = document.getElementById("password");
+            const type = passwordField.getAttribute("type") === "password" ? "text": "password";
+            passwordField.setAttribute('type', type);  
+            this.textContent = type === "password" ? "👁️" : "🙈"; 
+        });
+    </script>
+</body>
+</html>

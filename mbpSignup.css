@@ -1,0 +1,57 @@
+#bgWork {
+    background-color :rgb(255, 255, 0);
+    width: 100px;
+    height: 100px;
+}
+
+.singupPage {
+    width: 500px;
+    height: 500px;
+    background-color :pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 20px 20px 20px rgb(255, 99, 125);
+}
+
+.signupForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.inputField {
+    padding: 6px;
+    outline-color: rgb(0, 0, 255);
+    width: 200px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.password-container {
+    position: relative;
+    width: 200px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.signupButton{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    background-color: rgb(252, 41, 234);
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgb(196, 5, 186);
+}

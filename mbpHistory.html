@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - To Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mbpHistory.css">
+</head>
+<body>
+    <div class="header">
+        <i class="fa fa-check-square-o fa-spin"></i>
+        <span class="bold-text">To Do List History</span>
+    </div>
+
+    <div id="historyContainer" class="history-container">
+    </div>
+
+    <script>
+        window.onload = function () {
+            const history = JSON.parse(localStorage.getItem("todoHistory")) || [];
+            const historyContainer = document.getElementById("historyContainer");
+
+            history.forEach((todoList, index) => {
+                const listItem = document.createElement("div");
+                listItem.classList.add("history-item");
+
+                const listTitle = document.createElement("span");
+                listTitle.textContent = `To-Do List ${index + 1}`;
+                listItem.appendChild(listTitle);
+
+                const downloadLink = document.createElement("a");
+                downloadLink.href = "#";
+                downloadLink.textContent = "Download as .txt";
+                downloadLink.addEventListener("click", () => {
+                    const blob = new Blob([todoList.join("\n")], { type: "text/plain" });
+                    const link = document.createElement("a");
+                    link.href = URL.createObjectURL(blob);
+                    link.download = `todo_${index + 1}.txt`;
+                    link.click();
+                });
+
+                listItem.appendChild(downloadLink);
+                historyContainer.appendChild(listItem);
+            });
+        };
+    </script>
+</body>
+</html>

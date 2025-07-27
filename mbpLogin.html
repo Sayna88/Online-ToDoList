@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List Login</title>
+    <link rel="stylesheet" href="mbpLogin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body id="bglWork">
+    <div class="icon-text">
+        <i class="fa fa-check-square-o"></i>
+        <span class="bold-text">  To Do List</span>
+    </div>
+    <div class="loginPage">
+        <h1 class="title">Login</h1>
+        <form class="loginForm" action="mbpHome.html">
+            <input class="inputField" type="email" id="email" placeholder="Email or Phone number...." required>
+            <div class="passwordContainer">
+                <input class="inputField" id="password" type="password" placeholder="Password...." required>
+                <span class="togglePassword" id="toggle-password">👁️</span>
+            </div>
+            <button class="loginButton" type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("email").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("password").focus();
+            }
+        });
+
+        document.getElementById("toggle-password").addEventListener("click", function() {
+            const passwordField = document.getElementById("password");
+            const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute('type', type);  
+            this.textContent = type === "password" ? "👁️" : "🙈"; 
+        });
+    </script>
+</body>
+</html>

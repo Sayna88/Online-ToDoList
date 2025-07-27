@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List make todo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mbpMakeToDo.css">
+</head>
+<body>
+
+    <div class="header">
+        <i class="fa fa-check-square-o fa-spin"></i>
+        <span class="bold-text">To Do List</span>
+        <button id="saveButton" class="save-button">Save</button>
+        <button id="newButton" class="new-button">New</button>
+        <button id="changeBackgroundButton" class="background-button">Change Background</button>
+        <button id="filePickerButton" class="background-button">Upload Background</button>
+        <button id="changeTextColorButton" class="background-button">Change Text Color</button>
+        <input type="file" id="filePicker" accept="image/*" style="display: none;">
+    </div>
+
+    <div id="colorPickerPopup" class="color-picker-popup" style="display: none;">
+        <h3>Select Background Color</h3>
+        <input type="color" id="backgroundColorPicker" class="color-picker">
+        <button id="closePopupButton" class="close-popup-button">Close</button>
+    </div>
+
+    <div id="textColorPickerPopup" class="color-picker-popup" style="display: none;">
+        <h3>Select Text Color</h3>
+        <input type="color" id="textColorPicker" class="color-picker">
+        <button id="closeTextColorPopupButton" class="close-popup-button">Close</button>
+    </div>
+
+    <div class="todo-container">
+        <form class="todoForm">
+        
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox" class="todo-checkbox">
+                <input class="inputField" type="text" placeholder="Write Your Work...." required>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+
+        const saveButton = document.getElementById('saveButton');
+        saveButton.addEventListener('click', () => {
+            let todoItems = [];
+            document.querySelectorAll('.todo-item').forEach(item => {
+                const text = item.querySelector('.inputField').value;
+                if (text) todoItems.push(text);
+            });
+
+            const blob = new Blob([todoItems.join('\n')], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = prompt('Enter the filename', 'todo_list.txt') || 'todo_list.txt';
+            a.click();
+        });
+
+        // Functionality for New button
+        const newButton = document.getElementById('newButton');
+        newButton.addEventListener('click', () => {
+            let todoItems = [];
+            document.querySelectorAll('.todo-item').forEach(item => {
+                const text = item.querySelector('.inputField').value;
+                if (text) todoItems.push(text);
+            });
+
+            localStorage.setItem('history', JSON.stringify(todoItems));
+
+            document.querySelectorAll('.inputField').forEach(input => {
+                input.value = '';
+            });
+        });
+
+        document.querySelectorAll('.inputField').forEach(input => {
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const nextInput = input.closest('.todo-item').nextElementSibling?.querySelector('.inputField');
+                    if (nextInput) nextInput.focus();
+                }
+            });
+        });
+
+        const changeBackgroundButton = document.getElementById("changeBackgroundButton");
+        const colorPickerPopup = document.getElementById("colorPickerPopup");
+        const backgroundColorPicker = document.getElementById("backgroundColorPicker");
+        const closePopupButton = document.getElementById("closePopupButton");
+
+        changeBackgroundButton.addEventListener("click", () => {
+            colorPickerPopup.style.display = "flex";
+        });
+
+        backgroundColorPicker.addEventListener("input", (event) => {
+            document.body.style.backgroundImage = "";
+            document.body.style.backgroundColor = event.target.value;
+        });
+
+        closePopupButton.addEventListener("click", () => {
+            colorPickerPopup.style.display = "none";
+        });
+
+        const changeTextColorButton = document.getElementById("changeTextColorButton");
+        const textColorPickerPopup = document.getElementById("textColorPickerPopup");
+        const textColorPicker = document.getElementById("textColorPicker");
+        const closeTextColorPopupButton = document.getElementById("closeTextColorPopupButton");
+
+        changeTextColorButton.addEventListener("click", () => {
+            textColorPickerPopup.style.display = "flex";
+        });
+
+        textColorPicker.addEventListener("input", (event) => {
+            const selectedColor = event.target.value;
+            document.querySelectorAll(".inputField").forEach((inputField) => {
+                inputField.style.color = selectedColor;
+            });
+        });
+
+        closeTextColorPopupButton.addEventListener("click", () => {
+            textColorPickerPopup.style.display = "none";
+        });
+
+        document.getElementById("filePickerButton").addEventListener("click", () => {
+            document.getElementById("filePicker").click();
+        });
+
+        document.getElementById("filePicker").addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.body.style.backgroundImage = `url(${e.target.result})`;
+                    document.body.style.backgroundSize = "cover";
+                    document.body.style.backgroundPosition = "center";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

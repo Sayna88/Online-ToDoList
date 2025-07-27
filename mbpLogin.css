@@ -1,0 +1,73 @@
+#bglWork {
+    background-color :rgb(119, 0, 255);
+    width: 100px;
+    height: 100px;
+}
+
+.icon-text {
+    font-size: x-large;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.bold-text {
+    font-weight: bold;
+    font-size: larger;
+    margin-left: 10px;
+}
+
+.loginPage {
+    width: 500px;
+    height: 500px;
+    background-color :pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 20px 20px 20px rgb(255, 99, 125);
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.inputField {
+    padding: 6px;
+    outline-color: rgb(0, 217, 255);
+    width: 200px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.passwordContainer {
+    position: relative;
+    width: 200px;
+}
+
+.togglePassword {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.loginButton{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    background-color: rgb(188, 137, 255);
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgb(105, 0, 224);
+}
+
